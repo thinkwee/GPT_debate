@@ -3,7 +3,7 @@ description: Create a report to help us improve. | 请提交遇到的问题或 B
 title: "[Bug]"
 labels:
   - bug
-assignees: rockbenben
+assignees: thinkwee
 body:
   - type: checkboxes
     id: checklist
@@ -11,7 +11,7 @@ body:
       label: Checklist
       description: Make sure that you follow these statements.
       options:
-        - label: I have searched [issues](https://github.com/rockbenben/ChatGPT-Shortcut/issues?q=)
+        - label: I have searched [issues](https://github.com/thinkwee/GPT_debate/issues?q=)
           required: true
 
   - type: markdown

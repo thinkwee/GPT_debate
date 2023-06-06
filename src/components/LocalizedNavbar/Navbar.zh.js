@@ -13,7 +13,7 @@ const zhNavbar = {
     },
     { type: "localeDropdown", position: "right" },
     {
-      href: "https://github.com/rockbenben/ChatGPT-Shortcut",
+      href: "https://github.com/thinkwee/GPT_debate",
       position: "right",
       className: "header-github-link",
     }
