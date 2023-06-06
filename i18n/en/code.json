@@ -1,0 +1,26 @@
+{
+  "多句辩论": {
+    "message": "multi_sentences"
+  },
+  "showcase.tag.multi_sentences.description": {
+    "message": "Debate in multiple sentences."
+  },
+  "单句辩论": {
+    "message": "single_sentence"
+  },
+  "showcase.tag.single_sentence.description": {
+    "message": "Debate in single sentence."
+  },
+  "ChatGPT": {
+    "message": "ChatGPT"
+  },
+  "showcase.tag.ChatGPT.description": {
+    "message": "ChatGPT."
+  },
+  "GPT4": {
+    "message": "GPT4"
+  },
+  "showcase.tag.GPT4.description": {
+    "message": "GPT4."
+  }
+}
