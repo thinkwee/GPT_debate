@@ -68,11 +68,11 @@ function ShowcaseCard({ user, isDescription, onCopy, onLove }) {
   const [copiedBlue, setCopiedBlue] = useState(false);
   const [copyCountRed, setCopyCountRed] = useState(0);
   const [copyCountBlue, setCopyCountBlue] = useState(0);
+  const serverIp = window["REACT_APP_SERVER_IP"];
 
   async function handleCopyClickRed() {
     try {
-      console.log('handleCopyClickRed REACT_APP_SERVER_IP:', process.env.REACT_APP_SERVER_IP);
-      const response = await fetch(`${process.env.REACT_APP_SERVER_IP}/count/red/${user.id}`, { method: 'POST' });
+      const response = await fetch(`${serverIp}/count/red/${user.id}`, { method: 'POST' });
       const data = await response.json();
       setCopiedRed(true);
       setCopyCountRed(data.count);
@@ -83,8 +83,7 @@ function ShowcaseCard({ user, isDescription, onCopy, onLove }) {
 
   async function handleCopyClickBlue() {
     try {
-      console.log('handleCopyClickBlue REACT_APP_SERVER_IP:', process.env.REACT_APP_SERVER_IP);
-      const response = await fetch(`${process.env.REACT_APP_SERVER_IP}/count/blue/${user.id}`, { method: 'POST' });
+      const response = await fetch(`${serverIp}/count/blue/${user.id}`, { method: 'POST' });
       const data = await response.json();
       setCopiedBlue(true);
       setCopyCountBlue(data.count);
@@ -95,9 +94,8 @@ function ShowcaseCard({ user, isDescription, onCopy, onLove }) {
 
   async function fetchCounts() {
     try {
-      console.log('fetchCounts REACT_APP_SERVER_IP:', process.env.REACT_APP_SERVER_IP);
-      const responseRed = await fetch(`${process.env.REACT_APP_SERVER_IP}/count/red/${user.id}`);
-      const responseBlue = await fetch(`${process.env.REACT_APP_SERVER_IP}/count/blue/${user.id}`);
+      const responseRed = await fetch(`${serverIp}/count/red/${user.id}`);
+      const responseBlue = await fetch(`${serverIp}/count/blue/${user.id}`);
       if (!responseRed.ok || !responseBlue.ok) {
         throw new Error('Network response was not ok');
       }
