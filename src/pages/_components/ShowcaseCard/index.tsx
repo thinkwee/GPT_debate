@@ -4,6 +4,7 @@ import { message, Tooltip } from "antd";
 import Link from "@docusaurus/Link";
 import Translate from "@docusaurus/Translate";
 import copy from "copy-text-to-clipboard";
+import dotenv from 'dotenv';
 //import Image from '@theme/IdealImage';
 import FavoriteIcon from "@site/src/components/svgIcons/FavoriteIcon";
 import {
@@ -68,6 +69,7 @@ function ShowcaseCard({ user, isDescription, onCopy, onLove }) {
   const [copiedBlue, setCopiedBlue] = useState(false);
   const [copyCountRed, setCopyCountRed] = useState(0);
   const [copyCountBlue, setCopyCountBlue] = useState(0);
+  dotenv.config();
   const serverIp = process.env.REACT_APP_SERVER_IP;
 
   async function handleCopyClickRed() {
