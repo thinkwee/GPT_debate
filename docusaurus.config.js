@@ -8,7 +8,7 @@ const enNavbar = require("./src/components/LocalizedNavbar/Navbar.en");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "AiShort-Tag filtering, keyword search, and one-click copy prompts",
+  title: "GPT Debate",
   // tagline: '方便中文使用 ChatGPT 快捷指令',
   favicon: "img/favicon.ico",
 
@@ -84,13 +84,13 @@ const config = {
         {
           name: "keywords",
           content:
-            "prompt,aishort,ChatGPT Shortcut,ChatGPT SC,ChatGPT,AI prompts，提示词",
+            "GPT, Debate",
         },
       ],
       navbar: getNavbar(),
       footer: {
         style: "dark",
-        copyright: `Copyright © ${new Date().getFullYear()} AiShort (ChatGPT Shortcut)`,
+        copyright: `Copyright © ${new Date().getFullYear()} GPT Debate (powered by AIShort)`,
       },
       prism: {
         theme: lightCodeTheme,

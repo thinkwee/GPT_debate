@@ -7,7 +7,7 @@ const zhNavbar = {
   },
   items: [
     {
-      to: "https://newzone.top/posts/2023-02-27-chatgpt_shortcuts.html",
+      to: "https://github.com/thinkwee/GPT_debate",
       label: "About GPT Debate",
       position: "left",
     },

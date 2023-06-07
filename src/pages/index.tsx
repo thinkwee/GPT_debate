@@ -49,8 +49,6 @@ const TITLE = translate({
 const DESCRIPTION = translate({
   message: "powered by ChatGPT-Shortcut",
 });
-const SUBMIT_URL =
-  "https://github.com/rockbenben/ChatGPT-Shortcut/discussions/11";
 
 type UserState = {
   scrollTopPosition: number;
