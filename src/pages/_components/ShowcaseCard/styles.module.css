@@ -50,11 +50,18 @@
   color: var(--site-color-svg-icon-favorite);
 }
 
-.showcaseCardSrcBtn {
+.showcaseCardSrcBtnRed {
   margin-left: 6px;
   padding-left: 12px;
   padding-right: 12px;
-  border: none;
+  border: 2px solid #D01C1F;
+}
+
+.showcaseCardSrcBtnBlue {
+  margin-left: 6px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border: 2px solid #4B81BF;
 }
 
 .showcaseCardSrcBtn:focus-visible {

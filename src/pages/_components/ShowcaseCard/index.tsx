@@ -63,7 +63,55 @@ function ShowcaseCardTag({ tags }: { tags: TagType[] }) {
   );
 }
 
-function ShowcaseCard({ user, isDescription, copyCount, onCopy, onLove }) {
+function ShowcaseCard({ user, isDescription, onCopy, onLove }) {
+  const [copiedRed, setCopiedRed] = useState(false);
+  const [copiedBlue, setCopiedBlue] = useState(false);
+  const [copyCountRed, setCopyCountRed] = useState(0);
+  const [copyCountBlue, setCopyCountBlue] = useState(0);
+
+  async function handleCopyClickRed() {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_SERVER_IP}/count/red/${user.id}`, { method: 'POST' });
+      const data = await response.json();
+      setCopiedRed(true);
+      setCopyCountRed(data.count);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function handleCopyClickBlue() {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_SERVER_IP}/count/blue/${user.id}`, { method: 'POST' });
+      const data = await response.json();
+      setCopiedBlue(true);
+      setCopyCountBlue(data.count);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function fetchCounts() {
+    try {
+      const responseRed = await fetch(`${process.env.REACT_APP_SERVER_IP}/count/red/${user.id}`);
+      const responseBlue = await fetch(`${process.env.REACT_APP_SERVER_IP}/count/blue/${user.id}`);
+      if (!responseRed.ok || !responseBlue.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const dataRed = await responseRed.json();
+      const dataBlue = await responseBlue.json();
+      setCopyCountRed(dataRed.count);
+      setCopyCountBlue(dataBlue.count);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchCounts();
+  }, [user.id]);
+
+
   const { userAuth, refreshUserAuth } = useContext(AuthContext);
 
   const [paragraphText, setParagraphText] = useState(
@@ -90,22 +138,22 @@ function ShowcaseCard({ user, isDescription, copyCount, onCopy, onLove }) {
     currentLanguage === "zh-Hans" ? paragraphText : user.desc_en;
   //const image = getCardImage(user);
   // 复制
-  const [copied, setShowCopied] = useState(false);
+  // const [copied, setShowCopied] = useState(false);
 
-  const handleCopyClick = useCallback(async () => {
-    try {
-      const updatedCount = await updateCopyCount(user.id);
-      if (user.description) {
-        copy(userDescription);
-      }
-      setShowCopied(true);
-      setTimeout(() => setShowCopied(false), 2000);
-      // Notify parent component to update the copy count
-      onCopy(user.id, updatedCount);
-    } catch (error) {
-      console.error("Error updating copy count:", error);
-    }
-  }, [user.id]);
+  // const handleCopyClick = useCallback(async () => {
+  //   try {
+  //     const updatedCount = await updateCopyCount(user.id);
+  //     if (user.description) {
+  //       copy(userDescription);
+  //     }
+  //     setShowCopied(true);
+  //     setTimeout(() => setShowCopied(false), 2000);
+  //     // Notify parent component to update the copy count
+  //     onCopy(user.id, updatedCount);
+  //   } catch (error) {
+  //     console.error("Error updating copy count:", error);
+  //   }
+  // }, [user.id]);
   // 将显示数据单位简化到 k
   const formatCopyCount = (count) => {
     if (count >= 1000) {
@@ -174,6 +222,11 @@ function ShowcaseCard({ user, isDescription, copyCount, onCopy, onLove }) {
     desc.includes("点击展示更多")
   );
 
+  {/* 计算红蓝方的投票比例 */ }
+  const totalVotes = copyCountRed + copyCountBlue;
+  const redPercentage = totalVotes > 0 ? (copyCountRed / totalVotes) * 100 : 0;
+  const bluePercentage = totalVotes > 0 ? (copyCountBlue / totalVotes) * 100 : 0;
+
   return (
     <li key={userTitle} className="card shadow--md">
       <div className={clsx("card__body", styles.cardBodyHeight)}>
@@ -182,8 +235,11 @@ function ShowcaseCard({ user, isDescription, copyCount, onCopy, onLove }) {
             <Link href={user.website} className={styles.showcaseCardLink}>
               {userTitle}{" "}
             </Link>
+            {/* <span className={styles.showcaseCardBody}>
+              {copyCount > 0 && `🔥${formatCopyCount(copyCount)}`}
+            </span> */}
           </Heading>
-          {user.tags.includes("favorite") && (
+          {/* {user.tags.includes("favorite") && (
             <Tooltip
               title={userAuth ? <Translate>点击移除收藏</Translate> : ""}
             >
@@ -196,14 +252,65 @@ function ShowcaseCard({ user, isDescription, copyCount, onCopy, onLove }) {
             <button
               className={clsx(
                 "button button--secondary button--sm",
-                styles.showcaseCardSrcBtn
+                styles.showcaseCardSrcBtnRed
               )}
               type="button"
               onClick={handleLove}
             >
               <Translate>收藏</Translate>
             </button>
-          )}
+          )} */}
+          <button
+            className={clsx('button button--secondary button--sm', styles.showcaseCardSrcBtnRed)}
+            type="button"
+            onClick={handleCopyClickRed}
+          >
+            {copiedRed ? (
+              <Translate>已投票红方</Translate>
+            ) : (
+              <Translate>支持红方</Translate>
+            )}
+            {` (${copyCountRed})`}
+          </button>
+          <button
+            className={clsx('button button--secondary button--sm', styles.showcaseCardSrcBtnBlue)}
+            type="button"
+            onClick={handleCopyClickBlue}
+          >
+            {copiedBlue ? (
+              <Translate>已投票蓝方</Translate>
+            ) : (
+              <Translate>支持蓝方</Translate>
+            )}
+            {` (${copyCountBlue})`}
+          </button>
+        </div>
+        {/* 添加状态条 */}
+        <div
+          style={{
+            display: 'flex',
+            width: '100%',
+            height: '10px',
+            marginTop: '10px',
+            borderRadius: '10px',
+            overflow: 'hidden',
+            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+          }}
+        >
+          <div
+            style={{
+              background: 'linear-gradient(90deg, #D01C1F, #ff7e7e)',
+              width: `${redPercentage}%`,
+              height: '100%',
+            }}
+          ></div>
+          <div
+            style={{
+              background: 'linear-gradient(90deg, #4B81BF, #7ea9ff)',
+              width: `${bluePercentage}%`,
+              height: '100%',
+            }}
+          ></div>
         </div>
         <p className={styles.showcaseCardBody}>🗣️ {userRemark}</p>
         {userDescription.map((userDescription_single, index) => {

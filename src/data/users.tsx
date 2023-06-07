@@ -1,7 +1,7 @@
 import { translate } from "@docusaurus/Translate";
 import { sortBy } from "@site/src/utils/jsUtils";
 import { User, TagType, Tag } from './User.d';
-import UsersData from "./prompt.json";
+import UsersData from "./debate.json";
 
 export const Tags: { [type in TagType]: Tag } = {
   multi_sentences: {
