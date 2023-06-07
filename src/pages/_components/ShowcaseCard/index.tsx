@@ -68,7 +68,7 @@ function ShowcaseCard({ user, isDescription, onCopy, onLove }) {
   const [copiedBlue, setCopiedBlue] = useState(false);
   const [copyCountRed, setCopyCountRed] = useState(0);
   const [copyCountBlue, setCopyCountBlue] = useState(0);
-  const serverIp = window["REACT_APP_SERVER_IP"];
+  const serverIp = process.env.REACT_APP_SERVER_IP;
 
   async function handleCopyClickRed() {
     try {
