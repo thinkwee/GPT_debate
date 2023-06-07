@@ -71,7 +71,7 @@ function ShowcaseCard({ user, isDescription, onCopy, onLove }) {
 
   async function handleCopyClickRed() {
     try {
-      const response = await fetch(`http://49.233.44.119:443/count/red/${user.id}`, { method: 'POST' });
+      const response = await fetch(`https://49.233.44.119:443/count/red/${user.id}`, { method: 'POST' });
       const data = await response.json();
       setCopiedRed(true);
       setCopyCountRed(data.count);
@@ -82,7 +82,7 @@ function ShowcaseCard({ user, isDescription, onCopy, onLove }) {
 
   async function handleCopyClickBlue() {
     try {
-      const response = await fetch(`http://49.233.44.119:443/count/blue/${user.id}`, { method: 'POST' });
+      const response = await fetch(`https://49.233.44.119:443/count/blue/${user.id}`, { method: 'POST' });
       const data = await response.json();
       setCopiedBlue(true);
       setCopyCountBlue(data.count);
@@ -93,8 +93,8 @@ function ShowcaseCard({ user, isDescription, onCopy, onLove }) {
 
   async function fetchCounts() {
     try {
-      const responseRed = await fetch(`http://49.233.44.119:443/count/red/${user.id}`);
-      const responseBlue = await fetch(`http://49.233.44.119:443/count/blue/${user.id}`);
+      const responseRed = await fetch(`https://49.233.44.119:443/count/red/${user.id}`);
+      const responseBlue = await fetch(`https://49.233.44.119:443/count/blue/${user.id}`);
       if (!responseRed.ok || !responseBlue.ok) {
         throw new Error('Network response was not ok');
       }
