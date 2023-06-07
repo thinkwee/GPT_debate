@@ -4,7 +4,6 @@ import { message, Tooltip } from "antd";
 import Link from "@docusaurus/Link";
 import Translate from "@docusaurus/Translate";
 import copy from "copy-text-to-clipboard";
-import dotenv from 'dotenv';
 //import Image from '@theme/IdealImage';
 import FavoriteIcon from "@site/src/components/svgIcons/FavoriteIcon";
 import {
@@ -69,12 +68,10 @@ function ShowcaseCard({ user, isDescription, onCopy, onLove }) {
   const [copiedBlue, setCopiedBlue] = useState(false);
   const [copyCountRed, setCopyCountRed] = useState(0);
   const [copyCountBlue, setCopyCountBlue] = useState(0);
-  dotenv.config();
-  const serverIp = process.env.REACT_APP_SERVER_IP;
 
   async function handleCopyClickRed() {
     try {
-      const response = await fetch(`${serverIp}/count/red/${user.id}`, { method: 'POST' });
+      const response = await fetch(`http://49.233.44.119:443/count/red/${user.id}`, { method: 'POST' });
       const data = await response.json();
       setCopiedRed(true);
       setCopyCountRed(data.count);
@@ -85,7 +82,7 @@ function ShowcaseCard({ user, isDescription, onCopy, onLove }) {
 
   async function handleCopyClickBlue() {
     try {
-      const response = await fetch(`${serverIp}/count/blue/${user.id}`, { method: 'POST' });
+      const response = await fetch(`http://49.233.44.119:443/count/blue/${user.id}`, { method: 'POST' });
       const data = await response.json();
       setCopiedBlue(true);
       setCopyCountBlue(data.count);
@@ -96,8 +93,8 @@ function ShowcaseCard({ user, isDescription, onCopy, onLove }) {
 
   async function fetchCounts() {
     try {
-      const responseRed = await fetch(`${serverIp}/count/red/${user.id}`);
-      const responseBlue = await fetch(`${serverIp}/count/blue/${user.id}`);
+      const responseRed = await fetch(`http://49.233.44.119:443/count/red/${user.id}`);
+      const responseBlue = await fetch(`http://49.233.44.119:443/count/blue/${user.id}`);
       if (!responseRed.ok || !responseBlue.ok) {
         throw new Error('Network response was not ok');
       }
