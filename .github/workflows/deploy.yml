@@ -29,7 +29,7 @@ jobs:
         HOST: ${{ secrets.HOST }}
         USERNAME: ${{ secrets.USERNAME }}
         PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      run: |
+      run: 
         echo "$PRIVATE_KEY" > private_key.pem
         chmod 600 private_key.pem
 	rsync -avzr --delete -e "ssh -i private_key.pem -o StrictHostKeyChecking=no -vvv" ./build/ $USERNAME@$HOST:/home/***/gpt_debate_build/build
