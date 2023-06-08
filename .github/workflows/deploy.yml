@@ -28,9 +28,11 @@ jobs:
       env:
         HOST: ${{ secrets.HOST }}
         USERNAME: ${{ secrets.USERNAME }}
-        PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       run: |
-        echo "$PRIVATE_KEY" > private_key.pem
+        echo "$SSH_PRIVATE_KEY" > private_key.pem
+        echo "$HOST"
+        echo "$USERNAME"
         chmod 600 private_key.pem
         rsync -avzr --delete -e "ssh -i private_key.pem -o StrictHostKeyChecking=no -vvv" ./build/ $USERNAME@$HOST:/home/lighthouse/gpt_debate_build/build
         rm -f private_key.pem
