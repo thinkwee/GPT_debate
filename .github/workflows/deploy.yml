@@ -1,22 +1,22 @@
-name: Deploy
+name: Build and Deploy
 
 on:
   push:
     branches:
-      - main # 或者你的默认分支名
+      - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
+    - name: Checkout repository
       uses: actions/checkout@v2
 
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: 14
+        node-version: 16
 
     - name: Install dependencies
       run: npm ci
