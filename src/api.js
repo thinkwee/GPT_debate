@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 // 登陆体系常量
-const API_URL = "https://api.newzone.top/api";
+const API_URL = "https://thinkwee.top/api";
 const authToken = Cookies.get("auth_token"); // Get the auth token from the cookie
 
 const config = {
@@ -137,7 +137,7 @@ export async function resetPassword(values) {
 export async function fetchAllCopyCounts() {
   try {
     const response = await axios.get(
-      "https://api-count.newzone.top/api/cards/allcounts"
+      "https://thinkwee.top/api/cards/allcounts"
     );
     const counts = response.data.reduce((acc, item) => {
       acc[item.card_id] = item.count;
@@ -152,7 +152,7 @@ export async function fetchAllCopyCounts() {
 export async function updateCopyCount(cardId) {
   try {
     const response = await axios.post(
-      `https://api-count.newzone.top/api/cards/${cardId}/copy`
+      `https://thinkwee.top/api/cards/${cardId}/copy`
     );
     const updatedCount = response.data.copyCount;
     return updatedCount;

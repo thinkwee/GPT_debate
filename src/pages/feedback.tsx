@@ -8,7 +8,7 @@ const { Title, Paragraph } = Typography;
 
 const FeedbackPage = () => {
   const walineOptions = {
-    serverURL: 'https://waline.newzone.top',
+    serverURL: 'https://thinkwee.top/api',
     path: '/feedback',
     lang: 'en', // 设置为英文
   };
