@@ -32,5 +32,5 @@ jobs:
       run: |
         echo "$SSH_PRIVATE_KEY" > private_key.pem
         chmod 600 private_key.pem
-        rsync -avzr --delete -O -e "ssh -i private_key.pem -o StrictHostKeyChecking=no -vvv" ./build/ $USERNAME@$HOST:/home/lighthouse/website_root/debate/build
+        rsync -avzr --delete -O -p -e "ssh -i private_key.pem -o StrictHostKeyChecking=no -vvv" ./build/ $USERNAME@$HOST:/home/lighthouse/website_root/debate/build
         rm -f private_key.pem
