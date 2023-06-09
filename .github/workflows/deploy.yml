@@ -31,8 +31,6 @@ jobs:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       run: |
         echo "$SSH_PRIVATE_KEY" > private_key.pem
-        echo "$HOST"
-        echo "$USERNAME"
         chmod 600 private_key.pem
-        rsync -avzr --delete -e "ssh -i private_key.pem -o StrictHostKeyChecking=no -vvv" ./build/ $USERNAME@$HOST:/home/lighthouse/gpt_debate_build/build
+        rsync -avzr --delete -e "ssh -i private_key.pem -o StrictHostKeyChecking=no -vvv" ./build/ $USERNAME@$HOST:/home/lighthouse/website_root/debate/build
         rm -f private_key.pem
