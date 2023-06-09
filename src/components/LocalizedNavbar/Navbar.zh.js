@@ -3,7 +3,7 @@ const zhNavbar = {
   title: "GPT Debate",
   logo: {
     alt: "GPT Debate",
-    src: "img/logo.svg",
+    src: "img/logo.png",
   },
   items: [
     {

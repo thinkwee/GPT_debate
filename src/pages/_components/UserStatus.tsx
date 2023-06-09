@@ -39,7 +39,7 @@ const UserStatus = () => {
   if (userAuth && userAuth.data) {
     return (
       <div>
-        <Link to="/user" style={{ marginRight: "10px" }}>
+        {/* <Link to="/user" style={{ marginRight: "10px" }}>
           <Translate id="link.user">用户界面</Translate>
         </Link>
         <Button onClick={handleLogout} style={{ marginRight: "10px" }}>
@@ -47,7 +47,7 @@ const UserStatus = () => {
         </Button>
         <Link className="button button--primary" onClick={() => setOpen(true)}>
           <Translate id="link.addprompt">添加自定义提示词</Translate>
-        </Link>
+        </Link> */}
         <Modal
           title={translate({id: "modal.addprompt.title", message: "分享 Prompt（本内容将出现在「你的提示词」标签中）"})}
           open={open}
