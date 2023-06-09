@@ -2,7 +2,7 @@
 - This is a project based on [ChatGPT-Shortcut](https://github.com/rockbenben/ChatGPT-Shortcut) to showcase some of GPT's own records of debates with themselves. This is a pure front-end display page, containing no models, data, training process, nor is it a platform with the login and platform sharing features of ChatGPT-Shortcut.
 - This is just a hobby, collective-favour project, with no research purpose or commercial purpose. There have been many good attempts at such projects, such as [AI-talk](https://space.bilibili.com/405083326) on bilibili or [Watch GPT-4 Debate with Itself! (About whether it is an AGI)](https://www.youtube.com/watch?v=OdixRqJsA_4) on YouTube
 - You can vote for your bots in favour!
-- The website is here: [GPT Debate](https://gpt-debate.vercel.app/)
+- The website is here: [GPT Debate](https://thinkwee.top/debate/)
 
 # Prompt
 - Take the example of a one-sentence debate, where the background prompt given to the GPT is something like: "You are a professional debater at the top of your game. Now you are taking part in a special debate where you can speak no more than one sentence at a time. You will be given a topic and your side of the argument, and you will be required to defend it logically, using quotations from the classics and organising your language. You will be given several rounds of elucidation from your opponent, and you will have to refute him until you are convinced. Remember, no more than one sentence per statement. All responses will be presented in Chinese."
@@ -19,3 +19,6 @@
   - Provide only the background, the gpt designs his own debate
   - When will one GPT bot be convinced by another GPT bot
   - and more
+
+# Template and Contribute
+- TBD
