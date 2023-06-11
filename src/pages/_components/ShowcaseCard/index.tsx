@@ -1,27 +1,19 @@
-import React, { useContext, useState, useEffect, useCallback } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import clsx from "clsx";
-import { message, Tooltip } from "antd";
+import { Tooltip } from "antd";
 import Link from "@docusaurus/Link";
 import Translate from "@docusaurus/Translate";
-import copy from "copy-text-to-clipboard";
 //import Image from '@theme/IdealImage';
-import FavoriteIcon from "@site/src/components/svgIcons/FavoriteIcon";
 import {
   Tags,
   TagList,
   type TagType,
-  type User,
   type Tag,
 } from "@site/src/data/users";
 import { sortBy } from "@site/src/utils/jsUtils";
 import Heading from "@theme/Heading";
 //import Tooltip from "../ShowcaseTooltip";
 import styles from "./styles.module.css";
-import {
-  updateCopyCount,
-  createFavorite,
-  updateFavorite,
-} from "@site/src/api";
 import { AuthContext } from '../AuthContext';
 
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
@@ -63,7 +55,7 @@ function ShowcaseCardTag({ tags }: { tags: TagType[] }) {
   );
 }
 
-function ShowcaseCard({ user, isDescription, onCopy, onLove }) {
+function ShowcaseCard({ user, isDescription, onLove }) {
   const [copiedRed, setCopiedRed] = useState(false);
   const [copiedBlue, setCopiedBlue] = useState(false);
   const [copyCountRed, setCopyCountRed] = useState(0);
@@ -155,68 +147,8 @@ function ShowcaseCard({ user, isDescription, onCopy, onLove }) {
   //   }
   // }, [user.id]);
   // 将显示数据单位简化到 k
-  const formatCopyCount = (count) => {
-    if (count >= 1000) {
-      return (count / 1000).toFixed(1) + "k";
-    }
-    return count;
-  };
 
-  const handleLove = useCallback(async () => {
-    try {
-      const response = userAuth;
-      console.log(response);
-      let userLoves;
-      let favoriteId;
 
-      if (!response.data.favorites) {
-        const createFavoriteResponse = await createFavorite([user.id]);
-        userLoves = [user.id];
-        favoriteId = createFavoriteResponse.data.data.id;
-      } else {
-        userLoves = response.data.favorites.loves || [];
-        favoriteId = response.data.favorites.id;
-
-        if (!userLoves.includes(user.id)) {
-          userLoves.push(user.id);
-          message.success("Added to favorites successfully!");
-        }
-      }
-
-      await updateFavorite(favoriteId, userLoves);
-      onLove(userLoves);
-      refreshUserAuth();
-    } catch (err) {
-      console.error(err);
-    }
-  }, [user.id, onLove, userAuth, refreshUserAuth]);
-
-  const removeFavorite = useCallback(async () => {
-    try {
-      const response = userAuth;
-      console.log(response);
-
-      let userLoves;
-      let favoriteId;
-
-      if (response.data.favorites) {
-        userLoves = response.data.favorites.loves || [];
-        favoriteId = response.data.favorites.id;
-
-        const index = userLoves.indexOf(user.id);
-        if (index > -1) {
-          userLoves.splice(index, 1);
-          message.success("Removed from favorites successfully!");
-        }
-
-        await updateFavorite(favoriteId, userLoves);
-        onLove(userLoves);
-        refreshUserAuth();
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  }, [user.id, onLove, userAuth, refreshUserAuth]);
 
   const containsShowMore = userDescription.some((desc) =>
     desc.includes("点击展示更多")
@@ -224,8 +156,8 @@ function ShowcaseCard({ user, isDescription, onCopy, onLove }) {
 
   {/* 计算红蓝方的投票比例 */ }
   const totalVotes = copyCountRed + copyCountBlue;
-  const redPercentage = totalVotes > 0 ? (copyCountRed / totalVotes) * 100 : 0;
-  const bluePercentage = totalVotes > 0 ? (copyCountBlue / totalVotes) * 100 : 0;
+  const redPercentage = totalVotes > 0 ? (copyCountRed / totalVotes) * 100 : 50;
+  const bluePercentage = totalVotes > 0 ? (copyCountBlue / totalVotes) * 100 : 50;
 
   return (
     <li key={userTitle} className="card shadow--md">

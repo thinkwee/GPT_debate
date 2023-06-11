@@ -48,6 +48,15 @@ export const Tags: { [type in TagType]: Tag } = {
     }),
     color: "#f6d000",
   },
+
+  hightemp: {
+    label: translate({ message: "高温度" }),
+    description: translate({
+      message: "高温度",
+      id: "showcase.tag.hightemp.description",
+    }),
+    color: "#a7db07",
+  },
 };
 
 const Users: User[] = UsersData as User[];

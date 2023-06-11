@@ -24,10 +24,10 @@ new_json['desc_cn'] =  new_debate[2:]
 new_json['title_en'] = new_json['title']
 new_json['desc_en'] = new_json['description']
 new_json['remark_en'] = new_json['remark']
-new_json['preview'] = ''
-new_json['website'] = ''
-new_json['source'] = ''
-new_json['tags'] = ''
+new_json['preview'] = None
+new_json['website'] = None
+new_json['source'] = None
+new_json['tags'] = ['ChatGPT']
 new_json['id'] = len(exist) + 1
 new_json['weight'] = 1
 pprint(new_json)

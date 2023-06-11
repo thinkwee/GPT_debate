@@ -22,5 +22,17 @@
   },
   "showcase.tag.GPT4.description": {
     "message": "GPT4."
+  },
+  "counterfactual": {
+    "message": "counterfactual"
+  },
+  "showcase.tag.counterfactual.description": {
+    "message": "counterfactual."
+  },
+  "hightemp": {
+    "message": "hightemp"
+  },
+  "showcase.tag.hightemp.description": {
+    "message": "softmax高温度，文本生成多样性高."
   }
 }
