@@ -47,7 +47,7 @@ const TITLE = translate({
     "GPT Debate",
 });
 const DESCRIPTION = translate({
-  message: "powered by ChatGPT-Shortcut",
+  message: "GPT debates, You vote",
 });
 // const SUBMIT_URL =
 //   "https://github.com/rockbenben/ChatGPT-Shortcut/discussions/11";
