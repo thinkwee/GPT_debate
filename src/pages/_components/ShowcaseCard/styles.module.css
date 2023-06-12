@@ -100,21 +100,7 @@
   width: auto;
 }
 
-.showcaseCardBodyBorderA {
-  font-size: smaller;
-  line-height: 1.66;
-  width: auto;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  line-height: 1.5;
-  border-radius: 5px;
-  padding: 0.275rem 0.8rem;
-  opacity: 0.8;
-  transition: opacity 200ms ease-out;
-  border: 1px solid #F44336;
-}
-
+.showcaseCardBodyBorderA,
 .showcaseCardBodyBorderB {
   font-size: smaller;
   line-height: 1.66;
@@ -127,7 +113,36 @@
   padding: 0.275rem 0.8rem;
   opacity: 0.8;
   transition: opacity 200ms ease-out;
+}
+
+.showcaseCardBodyBorderA {
+  border: 1px solid #F44336;
+}
+
+.showcaseCardBodyBorderB {
   border: 1px solid #2196F3;
+}
+
+/* 添加动画效果 */
+@keyframes clickAnimation {
+  0% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
+
+/* 应用动画效果 */
+.showcaseCardBodyBorderA.clicked,
+.showcaseCardBodyBorderB.clicked {
+  animation: clickAnimation 0.5s;
 }
 
 .showcaseCardBodyBorderMore {

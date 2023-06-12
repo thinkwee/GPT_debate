@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import clsx from "clsx";
-import { Tooltip } from "antd";
 import Link from "@docusaurus/Link";
+import { Tooltip, message } from "antd";
 import Translate from "@docusaurus/Translate";
 //import Image from '@theme/IdealImage';
 import {
@@ -15,7 +15,7 @@ import Heading from "@theme/Heading";
 //import Tooltip from "../ShowcaseTooltip";
 import styles from "./styles.module.css";
 import { AuthContext } from '../AuthContext';
-
+import copy from "copy-to-clipboard";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 const TagComp = React.forwardRef<HTMLLIElement, Tag>(
@@ -115,41 +115,31 @@ function ShowcaseCard({ user, isDescription, onLove }) {
   }, [isDescription, user.description, user.description_detail]);
 
   // 点击展开文本
-  function handleParagraphClick() {
-    if (paragraphText === user.description) {
+  function handleParagraphClick(showMoreInDescription) {
+    if (showMoreInDescription) {
       setParagraphText(user.description_detail);
     } else {
       setParagraphText(user.description);
     }
   }
+
+  // 点击收回文本
+  function handleCollapseClick() {
+    setParagraphText(user.description);
+  }
+
+  // 复制文本到剪贴板并显示提示
+  function handleCopyText(text, index) {
+    copy(text);
+    message.success("已复制");
+    setClickedIndex(index);
+  }
+
   const { i18n } = useDocusaurusContext();
   const currentLanguage = i18n.currentLocale;
   const userTitle = currentLanguage === "en" ? user.title_en : user.title;
   const userRemark = currentLanguage === "en" ? user.remark_en : user.remark;
-  const userDescription =
-    currentLanguage === "zh-Hans" ? paragraphText : user.desc_en;
-  //const image = getCardImage(user);
-  // 复制
-  // const [copied, setShowCopied] = useState(false);
-
-  // const handleCopyClick = useCallback(async () => {
-  //   try {
-  //     const updatedCount = await updateCopyCount(user.id);
-  //     if (user.description) {
-  //       copy(userDescription);
-  //     }
-  //     setShowCopied(true);
-  //     setTimeout(() => setShowCopied(false), 2000);
-  //     // Notify parent component to update the copy count
-  //     onCopy(user.id, updatedCount);
-  //   } catch (error) {
-  //     console.error("Error updating copy count:", error);
-  //   }
-  // }, [user.id]);
-  // 将显示数据单位简化到 k
-
-
-
+  const userDescription = currentLanguage === "zh-Hans" ? paragraphText : user.desc_en;
   const containsShowMore = userDescription.some((desc) =>
     desc.includes("点击展示更多")
   );
@@ -159,6 +149,8 @@ function ShowcaseCard({ user, isDescription, onLove }) {
   const redPercentage = totalVotes > 0 ? (copyCountRed / totalVotes) * 100 : 50;
   const bluePercentage = totalVotes > 0 ? (copyCountBlue / totalVotes) * 100 : 50;
 
+  const [clickedIndex, setClickedIndex] = useState(-1);
+
   return (
     <li key={userTitle} className="card shadow--md">
       <div className={clsx("card__body", styles.cardBodyHeight)}>
@@ -167,31 +159,7 @@ function ShowcaseCard({ user, isDescription, onLove }) {
             <Link href={user.website} className={styles.showcaseCardLink}>
               {userTitle}{" "}
             </Link>
-            {/* <span className={styles.showcaseCardBody}>
-              {copyCount > 0 && `🔥${formatCopyCount(copyCount)}`}
-            </span> */}
           </Heading>
-          {/* {user.tags.includes("favorite") && (
-            <Tooltip
-              title={userAuth ? <Translate>点击移除收藏</Translate> : ""}
-            >
-              <div onClick={userAuth ? removeFavorite : null}>
-                <FavoriteIcon svgClass={styles.svgIconFavorite} size="small" />
-              </div>
-            </Tooltip>
-          )}
-          {userAuth && !user.tags.includes("favorite") && (
-            <button
-              className={clsx(
-                "button button--secondary button--sm",
-                styles.showcaseCardSrcBtnRed
-              )}
-              type="button"
-              onClick={handleLove}
-            >
-              <Translate>收藏</Translate>
-            </button>
-          )} */}
           <button
             className={clsx('button button--secondary button--sm', styles.showcaseCardSrcBtnRed)}
             type="button"
@@ -232,7 +200,7 @@ function ShowcaseCard({ user, isDescription, onLove }) {
         >
           <div
             style={{
-              background: 'linear-gradient(90deg, #F44336, #FF8A80)',
+              background: 'linear-gradient(90deg, #FF8A80, #F44336)',
               width: `${redPercentage}%`,
               height: '100%',
               borderRadius: '5px 0 0 5px',
@@ -257,14 +225,27 @@ function ShowcaseCard({ user, isDescription, onLove }) {
 
           return (
             <p
-              onClick={handleParagraphClick}
+              onClick={() => {
+                if (showMoreInDescription) {
+                  handleParagraphClick(true);
+                } else if (userDescription_single.includes("点击收回")) {
+                  handleCollapseClick();
+                } else {
+                  handleCopyText(userDescription_single, index);
+                }
+              }}
               className={
                 showMoreInDescription
                   ? styles.showcaseCardBodyBorderMore
                   : index % 2 === 0
-                    ? styles.showcaseCardBodyBorderA
-                    : styles.showcaseCardBodyBorderB
+                    ? clsx(styles.showcaseCardBodyBorderA, {
+                      [styles.clicked]: clickedIndex === index,
+                    })
+                    : clsx(styles.showcaseCardBodyBorderB, {
+                      [styles.clicked]: clickedIndex === index,
+                    })
               }
+              onAnimationEnd={() => setClickedIndex(-1)}
               key={index}
             >
               {showMoreInDescription
@@ -282,6 +263,14 @@ function ShowcaseCard({ user, isDescription, onLove }) {
             </p>
           );
         })}
+        {paragraphText === user.description_detail && (
+          <p
+            onClick={() => handleCollapseClick()}
+            className={styles.showcaseCardBodyBorderMore}
+          >
+            点击收回
+          </p>
+        )}
       </div>
       <ul className={clsx("card__footer", styles.cardFooter)}>
         <ShowcaseCardTag tags={user.tags} />
