@@ -224,23 +224,26 @@ function ShowcaseCard({ user, isDescription, onLove }) {
             width: '100%',
             height: '10px',
             marginTop: '10px',
-            borderRadius: '10px',
+            borderRadius: '5px',
             overflow: 'hidden',
             boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+            backgroundColor: '#F0F0F0',
           }}
         >
           <div
             style={{
-              background: 'linear-gradient(90deg, #D01C1F, #ff7e7e)',
+              background: 'linear-gradient(90deg, #FF3B30, #FF5E3A)',
               width: `${redPercentage}%`,
               height: '100%',
+              borderRadius: '5px 0 0 5px',
             }}
           ></div>
           <div
             style={{
-              background: 'linear-gradient(90deg, #4B81BF, #7ea9ff)',
+              background: 'linear-gradient(90deg, #007AFF, #34AADC)',
               width: `${bluePercentage}%`,
               height: '100%',
+              borderRadius: '0 5px 5px 0',
             }}
           ></div>
         </div>

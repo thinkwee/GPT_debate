@@ -54,14 +54,30 @@
   margin-left: 6px;
   padding-left: 12px;
   padding-right: 12px;
-  border: 2px solid #D01C1F;
+  border: 1px solid #FF3B30;
+  border-radius: 5px;
+  background-color: transparent;
+  transition: background-color 200ms ease-out;
+}
+
+.showcaseCardSrcBtnRed:hover {
+  background-color: #FF3B30;
+  color: #FFFFFF;
 }
 
 .showcaseCardSrcBtnBlue {
   margin-left: 6px;
   padding-left: 12px;
   padding-right: 12px;
-  border: 2px solid #4B81BF;
+  border: 1px solid #007AFF;
+  border-radius: 5px;
+  background-color: transparent;
+  transition: background-color 200ms ease-out;
+}
+
+.showcaseCardSrcBtnBlue:hover {
+  background-color: #007AFF;
+  color: #FFFFFF;
 }
 
 .showcaseCardSrcBtn:focus-visible {
@@ -73,12 +89,13 @@
   color: inherit;
 }
 
-[data-theme='dark'] .showcaseCardSrcBtn:hover {
+/* [data-theme='dark'] .showcaseCardSrcBtn:hover {
   background-color: var(--ifm-color-emphasis-300) !important;
-}
+} */
 
 .showcaseCardBody {
-  font-size: smaller;
+  margin-top: 15px;
+  font-size: normal;
   line-height: 1.66;
   width: auto;
 }
@@ -91,11 +108,11 @@
   align-items: center;
   cursor: pointer;
   line-height: 1.5;
-  border-radius: 1px;
+  border-radius: 5px;
   padding: 0.275rem 0.8rem;
   opacity: 0.8;
   transition: opacity 200ms ease-out;
-  border: 2px dashed #D01C1F;
+  border: 1px solid #FF3B30;
 }
 
 .showcaseCardBodyBorderB {
@@ -106,11 +123,11 @@
   align-items: center;
   cursor: pointer;
   line-height: 1.5;
-  border-radius: 1px;
+  border-radius: 5px;
   padding: 0.275rem 0.8rem;
   opacity: 0.8;
   transition: opacity 200ms ease-out;
-  border: 2px dashed #4B81BF;
+  border: 1px solid #007AFF;
 }
 
 .showcaseCardBodyBorderMore {
@@ -121,14 +138,22 @@
   align-items: center;
   cursor: pointer;
   line-height: 1.5;
-  border-radius: 1px;
+  border-radius: 5px;
   padding: 0.275rem 0.8rem;
   opacity: 1.0;
-  transition: opacity 200ms ease-out;
-  border: 2px solid #3AA845;
+  transition: 200ms ease-out;
+  border: 1px solid #34C759;
   justify-content: center;
   text-align: center;
+  align-self: center;
 }
+
+.showcaseCardBodyBorderMore:hover {
+  background-color: #30a14e;
+  border-color: #30a14e;
+  color: #FFFFFF;
+}
+
 
 .cardFooter {
   display: flex;

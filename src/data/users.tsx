@@ -7,7 +7,7 @@ export const Tags: { [type in TagType]: Tag } = {
   multi_sentences: {
     label: translate({ message: "多句辩论" }),
     description: translate({
-      message: "多句辩论",
+      message: "每次发言不限字数。",
       id: "showcase.tag.multi_sentences.description",
     }),
     color: "#ce2d71",
@@ -16,7 +16,7 @@ export const Tags: { [type in TagType]: Tag } = {
   single_sentence: {
     label: translate({ message: "单句辩论" }),
     description: translate({
-      message: "单句辩论",
+      message: "每次发言只能发言一句。",
       id: "showcase.tag.single_sentence.description",
     }),
     color: "#ff7f04",
@@ -25,7 +25,7 @@ export const Tags: { [type in TagType]: Tag } = {
   GPT4: {
     label: translate({ message: "GPT4" }),
     description: translate({
-      message: "GPT4",
+      message: "使用GPT4作为Bot引擎",
       id: "showcase.tag.GPT4.description",
     }),
     color: "#c1db3c",
@@ -34,7 +34,7 @@ export const Tags: { [type in TagType]: Tag } = {
   ChatGPT: {
     label: translate({ message: "ChatGPT" }),
     description: translate({
-      message: "ChatGPT",
+      message: "使用ChatGPT作为Bot引擎",
       id: "showcase.tag.ChatGPT.description",
     }),
     color: "#a0c3d9",
@@ -43,16 +43,16 @@ export const Tags: { [type in TagType]: Tag } = {
   counterfactual: {
     label: translate({ message: "反事实" }),
     description: translate({
-      message: "反事实",
+      message: "一方的论点本身违反客观事实。",
       id: "showcase.tag.counterfactual.description",
     }),
     color: "#f6d000",
   },
 
   hightemp: {
-    label: translate({ message: "高温度" }),
+    label: translate({ message: "高生成多样性" }),
     description: translate({
-      message: "高温度",
+      message: "softmax设置高温度，使得生成的文本多样性更好，不确定性更高。",
       id: "showcase.tag.hightemp.description",
     }),
     color: "#a7db07",

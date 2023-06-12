@@ -38,7 +38,7 @@ import UserStatus from "./_components/UserStatus";
 import UserPrompts from "./_components/UserPrompts";
 import { AuthContext, AuthProvider } from './_components/AuthContext';
 import Cookies from "js-cookie";
-import { fetchAllCopyCounts} from "@site/src/api";
+import { fetchAllCopyCounts } from "@site/src/api";
 
 import styles from "./styles.module.css";
 
@@ -187,12 +187,15 @@ function ShowcaseFilters({ onToggleDescription }) {
   const currentLanguage = i18n.currentLocale;
   return (
     <section className="container margin-top--l margin-bottom--lg">
-      <div className={clsx("margin-bottom--sm", styles.filterCheckbox)}>
+      <div className={clsx("margin-bottom--sm", styles.filterCheckbox, "filterContainer")}>
         <div>
           <Heading as="h2">
             <Translate id="showcase.filters.title">Filters</Translate>
           </Heading>
           <span>{siteCountPlural(filteredUsers.length)}</span>
+        </div>
+        <div>
+          <SearchBar />
         </div>
         {currentLanguage === "zh-Hans" && (
           <button
@@ -208,34 +211,34 @@ function ShowcaseFilters({ onToggleDescription }) {
       <ul className={clsx("clean-list", styles.checkboxList)}>
         {/* 登陆用户标签按钮 */}
         {username && (
-        <li className={styles.checkboxListItem} onClick={handleClick}>
-          <ShowcaseTooltip
-            text={translate({
-              message: "个人提示词",
-            })}
-            anchorEl="#__docusaurus"
-          >
-            <ShowcaseTagSelect
-              tag="yourprompt"
-              label={translate({
-                message: "你的提示词",
+          <li className={styles.checkboxListItem} onClick={handleClick}>
+            <ShowcaseTooltip
+              text={translate({
+                message: "个人提示词",
               })}
-              icon={
-                (
-                  <span
-                    style={{
-                      backgroundColor: "#a2222a",
-                      width: 10,
-                      height: 10,
-                      borderRadius: "50%",
-                      marginLeft: 8,
-                    }}
-                  />
-                )
-              }
-            />
-          </ShowcaseTooltip>
-        </li>)}
+              anchorEl="#__docusaurus"
+            >
+              <ShowcaseTagSelect
+                tag="yourprompt"
+                label={translate({
+                  message: "你的提示词",
+                })}
+                icon={
+                  (
+                    <span
+                      style={{
+                        backgroundColor: "#a2222a",
+                        width: 10,
+                        height: 10,
+                        borderRadius: "50%",
+                        marginLeft: 8,
+                      }}
+                    />
+                  )
+                }
+              />
+            </ShowcaseTooltip>
+          </li>)}
         {TagList.map((tag, i) => {
           const { label, description, color } = Tags[tag];
           const id = `showcase_checkbox_id_${tag}`;
@@ -341,7 +344,7 @@ function SearchBar() {
       <input
         id="searchbar"
         placeholder={translate({
-          message: "Search for prompts...",
+          message: "Search for debates...",
           id: "showcase.searchBar.placeholder",
         })}
         value={value ?? undefined}
@@ -375,7 +378,7 @@ function ShowcaseCards({ isDescription }) {
       }
       if (userLoves && userLoves.includes(user.id) && !user.tags.includes("favorite")) {
         //user.weight += 100000; // If user is loved by current user, add a very large number to its weight
-        user.tags.push("favorite"); 
+        user.tags.push("favorite");
       }
       if (user.tags.includes("favorite")) {
         favorites.push(user);
@@ -395,7 +398,7 @@ function ShowcaseCards({ isDescription }) {
       const counts = await fetchAllCopyCounts();
       setCopyCounts(counts);
     };
-  
+
     fetchData();
   }, []);
 
@@ -427,36 +430,6 @@ function ShowcaseCards({ isDescription }) {
     <section className="margin-top--lg margin-bottom--xl">
       {filteredUsers.length === sortedUsers.length ? (
         <>
-          <div className={styles.showcaseFavorite}>
-            <div className="container">
-              <div
-                className={clsx(
-                  "margin-bottom--md",
-                  styles.showcaseFavoriteHeader
-                )}
-              >
-                {/* <Heading as="h2">
-                  <Translate id="showcase.favoritesList.title">
-                    All Debates
-                  </Translate>
-                </Heading> */}
-                {/* <FavoriteIcon svgClass={styles.svgIconFavorite} /> */}
-                <SearchBar />
-              </div>
-              {/* <ul className={clsx("clean-list", styles.showcaseList)}>
-                {favoriteUsers.map((user) => (
-                  <ShowcaseCard
-                    key={user.title}
-                    user={user}
-                    isDescription={isDescription}
-                    copyCount={copyCounts[user.id] || 0}
-                    onCopy={handleCardCopy}
-                    onLove={setUserLoves}
-                  />
-                ))}
-              </ul> */}
-            </div>
-          </div>
           <div className="container margin-top--lg">
             <Heading as="h2" className={styles.showcaseHeader}>
               <Translate id="showcase.usersList.allUsers">
@@ -479,11 +452,11 @@ function ShowcaseCards({ isDescription }) {
         </>
       ) : (
         <div className="container">
-          <div
+          {/* <div
             className={clsx("margin-bottom--md", styles.showcaseFavoriteHeader)}
           >
             <SearchBar />
-          </div>
+          </div> */}
           <ul className={clsx("clean-list", styles.showcaseList)}>
             {filteredUsers.map((user) => (
               <ShowcaseCard

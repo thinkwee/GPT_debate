@@ -45,13 +45,21 @@
 
 .searchContainer {
   margin-left: auto;
+  display: flex;
+  align-items: center;
 }
 
 .searchContainer input {
   height: 30px;
   border-radius: 15px;
-  padding: 10px;
-  border: 1px solid gray;
+  padding: 0 10px;
+  border: 1px solid #A3A3A3;
+  font-size: 14px;
+  transition: border-color 200ms ease-out;
+}
+
+.searchContainer input:focus {
+  border-color: #007AFF;
 }
 
 .showcaseList {
@@ -96,15 +104,26 @@
 
 .onToggleButton {
   display: inline-block;
-  background-color: #18816a;
-  color: var(--site-color-favorite-background);
+  background-color: #007AFF;
+  color: #FFFFFF;
   padding: 5px 10px;
   border-radius: 5px;
   text-decoration: none;
-  font-size: 8px;
+  font-size: 14px;
   font-weight: bold;
-  margin-right: 8px;
+  margin-left: 8px;
   border: none;
   box-shadow: none;
   cursor: pointer;
+  transition: background-color 200ms ease-out;
+}
+
+.onToggleButton:hover {
+  background-color: #0051D4;
+}
+
+.filterContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
