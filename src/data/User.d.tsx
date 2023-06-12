@@ -1,7 +1,7 @@
 export type User = {
   title: string;
   description: string;
-  desc_cn: string;
+  description_detail: string;
   remark: string;
   title_en: string;
   desc_en: string;

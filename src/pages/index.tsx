@@ -98,7 +98,7 @@ function filterUsers(
       (
         user.title +
         user.description +
-        user.desc_cn +
+        user.description_detail +
         user.remark +
         user.desc_en +
         user.remark_en

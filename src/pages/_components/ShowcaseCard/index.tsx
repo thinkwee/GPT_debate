@@ -107,17 +107,17 @@ function ShowcaseCard({ user, isDescription, onLove }) {
   const { userAuth, refreshUserAuth } = useContext(AuthContext);
 
   const [paragraphText, setParagraphText] = useState(
-    isDescription ? user.description : user.desc_cn
+    isDescription ? user.description : user.description_detail
   );
 
   useEffect(() => {
-    setParagraphText(isDescription ? user.description : user.desc_cn);
-  }, [isDescription, user.description, user.desc_cn]);
+    setParagraphText(isDescription ? user.description : user.description_detail);
+  }, [isDescription, user.description, user.description_detail]);
 
-  // 点击显示中文文本
+  // 点击展开文本
   function handleParagraphClick() {
     if (paragraphText === user.description) {
-      setParagraphText(user.desc_cn);
+      setParagraphText(user.description_detail);
     } else {
       setParagraphText(user.description);
     }
