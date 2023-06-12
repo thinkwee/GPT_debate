@@ -54,14 +54,14 @@
   margin-left: 6px;
   padding-left: 12px;
   padding-right: 12px;
-  border: 1px solid #FF3B30;
+  border: 1px solid #F44336;
   border-radius: 5px;
   background-color: transparent;
   transition: background-color 200ms ease-out;
 }
 
 .showcaseCardSrcBtnRed:hover {
-  background-color: #FF3B30;
+  background-color: #F44336;
   color: #FFFFFF;
 }
 
@@ -69,14 +69,14 @@
   margin-left: 6px;
   padding-left: 12px;
   padding-right: 12px;
-  border: 1px solid #007AFF;
+  border: 1px solid #2196F3;
   border-radius: 5px;
   background-color: transparent;
   transition: background-color 200ms ease-out;
 }
 
 .showcaseCardSrcBtnBlue:hover {
-  background-color: #007AFF;
+  background-color: #2196F3;
   color: #FFFFFF;
 }
 
@@ -112,7 +112,7 @@
   padding: 0.275rem 0.8rem;
   opacity: 0.8;
   transition: opacity 200ms ease-out;
-  border: 1px solid #FF3B30;
+  border: 1px solid #F44336;
 }
 
 .showcaseCardBodyBorderB {
@@ -127,7 +127,7 @@
   padding: 0.275rem 0.8rem;
   opacity: 0.8;
   transition: opacity 200ms ease-out;
-  border: 1px solid #007AFF;
+  border: 1px solid #2196F3;
 }
 
 .showcaseCardBodyBorderMore {
@@ -142,15 +142,15 @@
   padding: 0.275rem 0.8rem;
   opacity: 1.0;
   transition: 200ms ease-out;
-  border: 1px solid #34C759;
+  border: 1px solid #4CAF50;
   justify-content: center;
   text-align: center;
   align-self: center;
 }
 
 .showcaseCardBodyBorderMore:hover {
-  background-color: #30a14e;
-  border-color: #30a14e;
+  background-color: #A5D6A7;
+  border-color: #A5D6A7;
   color: #FFFFFF;
 }
 

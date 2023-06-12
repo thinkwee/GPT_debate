@@ -59,7 +59,7 @@
 }
 
 .searchContainer input:focus {
-  border-color: #007AFF;
+  border-color: #2196F3;
 }
 
 .showcaseList {
@@ -104,7 +104,7 @@
 
 .onToggleButton {
   display: inline-block;
-  background-color: #007AFF;
+  background-color: #2196F3;
   color: #FFFFFF;
   padding: 5px 10px;
   border-radius: 5px;

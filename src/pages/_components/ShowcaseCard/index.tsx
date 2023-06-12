@@ -232,7 +232,7 @@ function ShowcaseCard({ user, isDescription, onLove }) {
         >
           <div
             style={{
-              background: 'linear-gradient(90deg, #FF3B30, #FF5E3A)',
+              background: 'linear-gradient(90deg, #F44336, #FF8A80)',
               width: `${redPercentage}%`,
               height: '100%',
               borderRadius: '5px 0 0 5px',
@@ -240,7 +240,7 @@ function ShowcaseCard({ user, isDescription, onLove }) {
           ></div>
           <div
             style={{
-              background: 'linear-gradient(90deg, #007AFF, #34AADC)',
+              background: 'linear-gradient(90deg, #2196F3, #81D4FA)',
               width: `${bluePercentage}%`,
               height: '100%',
               borderRadius: '0 5px 5px 0',

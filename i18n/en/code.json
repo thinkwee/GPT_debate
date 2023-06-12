@@ -33,6 +33,6 @@
     "message": "hightemp"
   },
   "showcase.tag.hightemp.description": {
-    "message": "softmax高温度，文本生成多样性高."
+    "message": "softmax high temperature."
   }
 }
