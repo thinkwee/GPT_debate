@@ -90,7 +90,7 @@ const config = {
       navbar: getNavbar(),
       footer: {
         style: "dark",
-        copyright: `Copyright © ${new Date().getFullYear()} GPT Debate (powered by AIShort)`,
+        copyright: `<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2023015408号</a> <br/> Copyright © ${new Date().getFullYear()} GPT Debate (powered by AIShort)`,
       },
       prism: {
         theme: lightCodeTheme,
