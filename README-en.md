@@ -23,6 +23,7 @@
 - When will one GPT bot be persuaded by another GPT bot
   - Human participation in the debate
   - and more
+- Explore new NLP benchmark through this project
 
 # 🗺️ Roadmap
 - [x] Show debate cards
