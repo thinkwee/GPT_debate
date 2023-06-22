@@ -39,6 +39,7 @@ GPT Debate
   - 何时一个GPT bot才会被另一个GPT bot说服
   - 人类参与辩论
   - and more
+- 能否发展出新的NLP benchmark
 
 # 🗺️ Roadmap
 - [x] 展示辩论卡片
