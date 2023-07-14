@@ -162,7 +162,7 @@ function useSiteCountPlural() {
           id: "showcase.filters.resultCount",
           description:
             'Pluralized label for the number of sites found on the showcase. Use as much plural forms (separated by "|") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)',
-          message: "{sitesCount} prompts",
+          message: "{sitesCount} debates",
         },
         { sitesCount }
       )
